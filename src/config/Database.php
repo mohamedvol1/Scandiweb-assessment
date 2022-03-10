@@ -11,12 +11,12 @@ use PDOException;
 class Database
 {
 
-  private $cleardb_url ;
-  private $host ;
-  private $username; 
-  private $password ;
-  private $dbName ;
-  private $active_group ;
+  private $cleardb_url;
+  private $host;
+  private $username;
+  private $password;
+  private $dbName;
+  private $active_group;
   private $query_builder;
 
   // hosted database config

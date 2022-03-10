@@ -14,7 +14,6 @@ class ProductsController {
     $products = new AllProducts($db);
     $products->setProducts();
     $result = $products->getProducts();
-    echo '<pre>second page</pre>';;  
     return json_encode($result);  
   }
 
