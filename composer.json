@@ -1,0 +1,15 @@
+{
+    "name": "moham/crd_app_api",
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mohamedvol1",
+            "email": "70990780+mohamedvol1@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
