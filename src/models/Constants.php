@@ -12,7 +12,7 @@ class Constants
   {
     $this->furniture = 'Furniture';
     $this->book = 'Book';
-    $this->disc = 'DVD-disc';
+    $this->disc = 'DVD';
   }
 
   public function getProductsTypes()
