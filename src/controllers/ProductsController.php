@@ -1,11 +1,10 @@
 <?php
 
 namespace app\controllers;
-// use const app\models\PRODUCT_TYPES;
 
 use app\config\Database;
 use app\models\AllProducts;
-use app\models\Constants;
+use app\models\abstracts\Product;
 
 class ProductsController {
 
@@ -18,18 +17,10 @@ class ProductsController {
   }
 
   public static function postProduct() {
-    $db = new Database(); 
-    $products = new AllProducts($db);
     $data = json_decode(file_get_contents("php://input"));
-  
-    $constants = new Constants();
-    $types = $constants->getProductsTypes();
-    
-    $productObj = $types[$data->type];
-    $productObj->setProductProps($data);
-    $newProduct = $productObj->getProductArray();
-  
-    $res = $products->addProduct($newProduct);
+    // getting instance of product type
+    $product = Product::getProductType($data->type);
+    $res = $product->addProduct($data);
     return json_encode($res);    
   }
 

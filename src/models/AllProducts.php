@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\models\abstract\ProductsDb;
+use app\models\abstracts\ProductsDb;
 use Exception;
 use PDO;
 
@@ -56,17 +56,4 @@ class AllProducts extends ProductsDb
     }
   }
 
-  public function addProduct(array $data)
-  {
-    extract($data);
-    $q = 'insert into products (title, sku, price, type, description, specialAttr) values (?, ?, ?, ?, ?, ?)';
-    $stmt = $this->conn->prepare($q);
-    try {
-      $stmt->execute(array($title, $sku, $price, $type, $description, $specialAttr));
-      return "new product is added successfully";
-    } catch (Exception $e) {
-      $this->response->setStatusCode(500);
-      echo 'Caught exception in adding a product: ',  $e->getMessage(), "\n";
-    }
-  }
 }

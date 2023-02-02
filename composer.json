@@ -11,5 +11,7 @@
             "email": "70990780+mohamedvol1@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
 }

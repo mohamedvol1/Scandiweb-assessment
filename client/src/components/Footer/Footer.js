@@ -15,8 +15,8 @@ const Footer = () => {
 				}}
 			>
 				<Typography sx={{ mt: '1rem' }} variant="h7">
-					<Link href="https://internships.shopify.com/" target="_blank" sx={{ textDecoration: 'none', transition: 'color .3s',fontWeight: 'bold' ,  '&:hover': { color: '#95bf47' } }}>
-						Shopify
+					<Link href="https://scandiweb.com/" target="_blank" sx={{ textDecoration: 'none', transition: 'color .3s',fontWeight: 'bold' ,  '&:hover': { color: '#e04f4f' } }}>
+						Scandiweb
 					</Link>
 				</Typography>
 			</Box>

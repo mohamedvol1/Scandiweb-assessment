@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use app\models\abstract\Product;
-
+use app\models\abstracts\Product;
 
 class Furniture extends Product
 {
@@ -30,5 +29,14 @@ class Furniture extends Product
       "specialAttr" => $this->specialAttr,
       "description" => $this->description
     );
+  }
+
+  public function addProduct(object $data)
+  {
+    // handling data shape 
+    $this->setProductProps($data);
+    $newProductArray = $this->getProductArray();
+    // add the furniture to database
+    $this->PushProductToDB($newProductArray);
   }
 }

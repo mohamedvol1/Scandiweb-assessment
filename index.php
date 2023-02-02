@@ -1,7 +1,7 @@
 <?php
 
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once realpath(__DIR__ . '/vendor/autoload.php');
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: GET, POST');

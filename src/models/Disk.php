@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use app\models\abstract\Product;
-
+use app\models\abstracts\Product;
 
 class Disk extends Product
 {
@@ -18,7 +17,6 @@ class Disk extends Product
     // handle special attributes
     $descriptionString = $dataObject->size . 'MB';
     $this->description = $descriptionString;
-    
   }
 
   public function getProductArray()
@@ -33,4 +31,13 @@ class Disk extends Product
     );
   }
 
+  public function addProduct(object $data)
+  {
+    // handling data shape 
+    $this->setProductProps($data);
+    $newProductArray = $this->getProductArray();
+
+    // add the furniture to database
+    $this->PushProductToDB($newProductArray);
+  }
 }

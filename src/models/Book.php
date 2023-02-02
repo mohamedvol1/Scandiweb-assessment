@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use app\models\abstract\Product;
-
+use app\models\abstracts\Product;
 
 class Book extends Product
 {
@@ -18,7 +17,6 @@ class Book extends Product
     // handle special attributes
     $descriptionString = $dataObject->weight . 'KG';
     $this->description = $descriptionString;
-    
   }
 
   public function getProductArray()
@@ -33,4 +31,13 @@ class Book extends Product
     );
   }
 
+  public function addProduct(object $data)
+  {
+    // handling data shape 
+    $this->setProductProps($data);
+    $newProductArray = $this->getProductArray();
+
+    // add the furniture to database
+    $this->PushProductToDB($newProductArray);
+  }
 }

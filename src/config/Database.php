@@ -4,31 +4,26 @@ namespace app\config;
 
 use PDO;
 use PDOException;
+use Dotenv\Dotenv;
 
-
-// mysql://bd7f57fdebb2c6:65a367ab@us-cdbr-east-05.cleardb.net/heroku_5b0cc9fbcfcb86c?reconnect=true
+$dotenv = Dotenv::createImmutable(__DIR__ .  DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..');
+$dotenv->load();
 
 class Database
 {
+  private $conn;
 
-  private $cleardb_url;
   private $host;
   private $username;
   private $password;
   private $dbName;
-  private $active_group;
-  private $query_builder;
-
   // hosted database config
   public function __construct()
   {
-    $this->cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $this->host = $this->cleardb_url["host"];
-    $this->username = $this->cleardb_url["user"];
-    $this->password = $this->cleardb_url["pass"];
-    $this->dbName = substr($this->cleardb_url["path"], 1);
-    $this->active_group = 'default';
-    $this->query_builder = TRUE;
+    $this->host = $_ENV['HOST'];
+    $this->username = $_ENV['USERNAME'];
+    $this->password = $_ENV['PASSWORD'];
+    $this->dbName = $_ENV['DATABASE_NAME'];
   }
 
 
@@ -37,7 +32,6 @@ class Database
   // private $dbName = 'products_crud_app';
   // private $username = 'root';
   // private $password = '';
-  private $conn;
 
   public function connection()
   {

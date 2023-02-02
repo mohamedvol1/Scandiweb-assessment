@@ -1,12 +1,12 @@
 
 
 const httpGetProducts = async () => {
-	const response = await fetch('https://crd-products-app2.herokuapp.com/products');
+	const response = await fetch('https://crd-products-app.000webhostapp.com/products');
 	return await response.json();
 };
 
 const httpDeleteProducts = async (idsList) => {
-	const response = await fetch('https://crd-products-app2.herokuapp.com/deleteChecked', {
+	const response = await fetch('https://crd-products-app.000webhostapp.com/deleteChecked', {
 		// crossDomain:true,
 		method: 'POST',
 		mode: 'cors',
@@ -19,7 +19,7 @@ const httpDeleteProducts = async (idsList) => {
 };
 
 const httpPostProduct = async (dataObj) => {
-	const response = await fetch('https://crd-products-app2.herokuapp.com/addProduct', {
+	const response = await fetch('https://crd-products-app.000webhostapp.com/addProduct', {
 		// crossDomain:true,
 		method: 'POST',
 		mode: 'cors',
