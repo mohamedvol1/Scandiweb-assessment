@@ -28,7 +28,16 @@ const httpPostProduct = async (dataObj) => {
 			...dataObj
 		})
 	});
-	return await response.json();
+	const result = await response;
+
+	// check for status code
+	if (!result.ok) {
+		let err = await result.json();
+		throw new Error(err)
+	}
+
+	return await result.json();
+
 };
 
 export { httpGetProducts, httpPostProduct, httpDeleteProducts };

@@ -134,7 +134,7 @@ const ProductForm = () => {
 			const size = validateIntegerValue(value.size);
 			setValue({ ...value, sizeErr: size.err });
 			if (size.err) {
-				handleErrMsg(size.errMsg, 'weight');
+				handleErrMsg(size.errMsg, 'size');
 				validForm = false;
 				// return false;
 			}
@@ -185,9 +185,19 @@ const ProductForm = () => {
 
 		// attributes = Object.assign(attributes, specialAttr);
 		const data = { ...attributes, ...specialAttr };
-		httpPostProduct(data).then((res) => navigate('/')).catch((err) => alert('bad request'));
+		httpPostProduct(data)
+			.then((res) => {
+				// product has been added then navigate to home page
+				navigate('/')
+			})
+			.catch((err) => {
+				// sommthing wrong with use request
+				handleErrMsg(err.message, '');
+				setErrors([ ...ErrObservable.errMsgList ]);
+				ErrObservable.emptyMsgList();
+			});
 
-		return
+		return;
 	};
 
 	const handleCancel = () => {

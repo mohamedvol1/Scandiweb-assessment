@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\config\Database;
 use app\models\AllProducts;
 use app\models\abstracts\Product;
+use Exception;
 
 class ProductsController {
 
@@ -17,11 +18,16 @@ class ProductsController {
   }
 
   public static function postProduct() {
-    $data = json_decode(file_get_contents("php://input"));
-    // getting instance of product type
-    $product = Product::getProductType($data->type);
-    $res = $product->addProduct($data);
-    return json_encode($res);    
+    try {
+      $data = json_decode(file_get_contents("php://input"));
+      // getting instance of product type
+      $product = Product::getProductType($data->type);
+      $res = $product->addProduct($data);
+      return json_encode('product has been added!');    
+    } catch (Exception $e) {
+      return $e->getMessage();
+      // throw new Exception($e->getMessage());
+    }
   }
 
   public static function deleteChecked() {

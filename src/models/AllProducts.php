@@ -22,7 +22,7 @@ class AllProducts extends ProductsDb
 
       if ($num > 0) {
         // set the products array
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
           array_push($this->products, $row);
         }
         return "fetched products successfully";

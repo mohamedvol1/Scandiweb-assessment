@@ -32,7 +32,7 @@ abstract class Product extends Database
 
   abstract public function setProductProps(object $dataObject);
 
-  abstract public function getProductArray();
+  abstract public function getProductObj();
 
   abstract public function addProduct(object $data);
 
@@ -48,9 +48,9 @@ abstract class Product extends Database
     return $productTypes[$type];
   }
 
-  public function PushProductToDB(array $data)
+  public function PushProductToDB(object $data)
   {
-    extract($data);
+    extract(get_object_vars($data));
     $q = 'insert into products (title, sku, price, type, description, specialAttr) values (?, ?, ?, ?, ?, ?)';
     $stmt = $this->conn->prepare($q);
     try {
@@ -60,5 +60,21 @@ abstract class Product extends Database
       $this->response->setStatusCode(500);
       echo 'Caught exception in adding a product: ',  $e->getMessage(), "\n";
     }
+  }
+
+  public function isSkuExist(string $sku)
+  {
+    $q = 'select sku from products where sku = ?';
+    $stmt = $this->conn->prepare($q);
+    $stmt->execute([$sku]);
+    $count = $stmt->rowCount();
+    $this->response->setStatusCode(200);
+
+    if ($count > 0) {
+      $this->response->setStatusCode(400);
+      throw new Exception(json_encode('non-unique SKU'));
+    }
+
+    // return;
   }
 }

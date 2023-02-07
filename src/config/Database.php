@@ -6,8 +6,8 @@ use PDO;
 use PDOException;
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__ .  DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..');
-$dotenv->load();
+// $dotenv = Dotenv::createImmutable(__DIR__ .  DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..');
+// $dotenv->load();
 
 class Database
 {
@@ -24,14 +24,15 @@ class Database
     $this->username = $_ENV['USERNAME'];
     $this->password = $_ENV['PASSWORD'];
     $this->dbName = $_ENV['DATABASE_NAME'];
+
+    // // local database config
+    // $this->host = 'localhost';
+    // $this->dbName = 'products_crud_app';
+    // $this->username = 'root';
+    // $this->password = '';
   }
 
 
-  // local database config
-  // private $host = 'localhost';
-  // private $dbName = 'products_crud_app';
-  // private $username = 'root';
-  // private $password = '';
 
   public function connection()
   {

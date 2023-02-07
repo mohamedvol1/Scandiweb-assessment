@@ -19,25 +19,20 @@ class Disk extends Product
     $this->description = $descriptionString;
   }
 
-  public function getProductArray()
+  public function getProductObj()
   {
-    return array(
-      "title" => $this->title,
-      "sku" => $this->sku,
-      "price" => $this->price,
-      "type" => $this->type,
-      "specialAttr" => $this->specialAttr,
-      "description" => $this->description
-    );
+    return $this;
   }
 
   public function addProduct(object $data)
   {
+    // check for dublicate sku if exist throw error
+    $this->isSkuExist($data->sku);
     // handling data shape 
     $this->setProductProps($data);
-    $newProductArray = $this->getProductArray();
+    $obj = $this->getProductObj();
 
     // add the furniture to database
-    $this->PushProductToDB($newProductArray);
+    $this->PushProductToDB($obj);
   }
 }

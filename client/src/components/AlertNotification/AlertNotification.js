@@ -24,7 +24,13 @@ const AlertNotification = ({ message, fieldName }) => {
 				}}
 			>
 				<Typography>
-					{message} — check {fieldName} field!
+					{fieldName ? (
+						<span>
+							{message} — check {fieldName} field!
+						</span>
+					) : (
+						<span>{message} - Bad request!</span>
+					)}
 				</Typography>
 				<CancelOutlinedIcon onClick={handleClick} sx={{ '&:hover': { cursor: 'pointer' } }} />
 			</Box>
